@@ -39,7 +39,8 @@ header {
   right: 0px;
   width: 100vw;
   backdrop-filter: blur(1rem);
-  color: white;
+  color: black;
+  transition: color 400ms ease-in;
 
   nav {
     max-width: $breakpoint-lg;
@@ -56,12 +57,16 @@ header {
         cursor: pointer;
         font-family: $serif-font;
         font-size: 1.2rem;
-        transition: color 350ms ease-in-out;
+        transition: color 150ms ease-in-out;
         &:hover {
           color: $accent-color-light;
         }
       }
     }
+  }
+
+  &.bright {
+    color: white;
   }
 }
 
@@ -70,7 +75,6 @@ header {
   width: 100vw;
   padding: 2rem;
 }
-
 
 .hero {
   background: $accent-color;

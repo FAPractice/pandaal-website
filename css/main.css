@@ -20,7 +20,9 @@ header {
   width: 100vw;
   -webkit-backdrop-filter: blur(1rem);
           backdrop-filter: blur(1rem);
-  color: white;
+  color: black;
+  -webkit-transition: color 400ms ease-in;
+  transition: color 400ms ease-in;
 }
 
 header nav {
@@ -52,12 +54,16 @@ header nav ul li {
   cursor: pointer;
   font-family: "Playfair Display", serif;
   font-size: 1.2rem;
-  -webkit-transition: color 350ms ease-in-out;
-  transition: color 350ms ease-in-out;
+  -webkit-transition: color 150ms ease-in-out;
+  transition: color 150ms ease-in-out;
 }
 
 header nav ul li:hover {
   color: #fccfe0;
+}
+
+header.bright {
+  color: white;
 }
 
 .page-section {
