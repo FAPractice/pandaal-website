@@ -2,7 +2,9 @@ import { useState } from "react";
 import Header from "./views/Header";
 
 function App() {
-  const navitems = [<li>Home</li>, <li>Contact Us</li>, <li>About</li>];
+  const navitems = ["Home", "Contact Us", "About"].map((v, i) => (
+    <li key={i}>{v}</li>
+  ));
 
   const [brightness, setBrightness] = useState("light");
 
