@@ -1,16 +1,22 @@
+import { useState } from "react";
+import Header from "./views/Header";
+
 function App() {
+  const navitems = [<li>Home</li>, <li>Contact Us</li>, <li>About</li>];
+
+  const [brightness, setBrightness] = useState("light");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY < window.innerHeight - 48) {
+      setBrightness("light");
+    } else {
+      setBrightness("dark");
+    }
+  });
+
   return (
     <div>
-      <header className="bright">
-        <nav>
-          <h1 className="logo">Pandaal</h1>
-          <ul>
-            <li>Home</li>
-            <li>Contact Us</li>
-            <li>About</li>
-          </ul>
-        </nav>
-      </header>
+      <Header navitems={navitems} brightness={brightness} />
       <section className="hero page-section">
         <h1 className="heading primary">Event Management is Hard</h1>
         <h2 className="heading secondary">We can make stuff easy for you.</h2>
