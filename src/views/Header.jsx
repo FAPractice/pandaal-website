@@ -1,7 +1,22 @@
-const Header = ({ children, navitems, brightness }) => {
+import { motion } from "framer-motion";
+
+const Header = ({
+  children,
+  navitems,
+  brightness,
+  animateDealy,
+  style,
+  className,
+}) => {
   return (
-    <header className="bright">
+    <motion.header
+      animate={{ opacity: [0, 1] }}
+      transition={{ delay: animateDealy, duration: 0.2, ease: "easeIn" }}
+      className={"bright" + className}
+      style={{ ...style }}
+    >
       <nav>
+        {children}
         <h1
           style={{ color: brightness === "light" ? "white" : "black" }}
           className="logo"
@@ -12,7 +27,7 @@ const Header = ({ children, navitems, brightness }) => {
           {navitems}
         </ul>
       </nav>
-    </header>
+    </motion.header>
   );
 };
 

@@ -1,5 +1,8 @@
 import { useState } from "react";
 import Header from "./views/Header";
+import Section from "./views/Section";
+import Hero from "./views/Hero";
+import { motion } from "framer-motion";
 
 function App() {
   const navitems = ["Home", "Contact Us", "About"].map((v, i) => (
@@ -16,27 +19,12 @@ function App() {
     }
   });
 
+  const fadeSlideBottom = { translateY: [100, 0], opacity: [0, 1] };
+
   return (
     <div>
-      <Header navitems={navitems} brightness={brightness} />
-      <section className="hero page-section">
-        <h1 className="heading primary">Event Management is Hard</h1>
-        <h2 className="heading secondary">We can make stuff easy for you.</h2>
-        <div className="content">
-          <p>Avalible on iOS, Android and Web.</p>
-          <div className="cta-flex">
-            <button className="cta white primary">Download Now</button>
-            <button className="cta white">Browse Online</button>
-          </div>
-        </div>
-      </section>
-      <section className="page-section">
-        <h1>Heading</h1>
-        <p>Text</p>
-        <button className="cta primary">Action 1</button>
-        <button className="cta">Action 2</button>
-      </section>
-      <section className="page-section"></section>
+      <Header navitems={navitems} brightness={brightness} animateDealy={1.3} />
+      <Hero />
     </div>
   );
 }
