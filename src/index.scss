@@ -55,11 +55,17 @@ code {
     monospace;
 }
 
-@mixin heading-styles($size) {
+@mixin heading-styles($size_desktop, $size_tablet, $size_mobile) {
   // $margin: math.div($size, 4);
 
   font-family: $serif-font;
-  font-size: $size;
+  font-size: $size_desktop;
+  @media screen and (max-width: $breakpoint-desktop) {
+    font-size: $size_tablet;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    font-size: $size_mobile;
+  }
 }
 
 * {
@@ -80,58 +86,17 @@ code {
   gap: 16px;
 
   h1 {
-    @include heading-styles($text-2xl);
+    @include heading-styles($text-2xl, $text-xl, $text-lg);
   }
   h2 {
-    @include heading-styles($text-lg);
+    @include heading-styles($text-lg, $text-md, $text-sm);
     color: $accent-color;
   }
 }
 
-// header {
-//   display: grid;
-//   padding: 1rem;
-//   position: fixed;
-//   top: 0px;
-//   left: 0px;
-//   right: 0px;
-//   width: 100vw;
-//   backdrop-filter: blur(1rem);
-//   color: black;
-//   transition: color 400ms ease-in;
-
-//   nav {
-//     width: clamp($breakpoint-mobile, 100%, $breakpoint-desktop);
-//     display: flex;
-//     justify-content: space-between;
-//     margin: auto;
-//     ul {
-//       width: fit-content;
-//       display: flex;
-//       height: auto;
-//       align-items: center;
-//       li {
-//         list-style-type: none;
-//         padding: 8px 24px;
-//         cursor: pointer;
-//         font-family: $serif-font;
-//         font-size: 1.2rem;
-//         transition: color 150ms ease-in-out;
-//         &:hover {
-//           color: $accent-color-light;
-//         }
-//       }
-//     }
-//   }
-
-//   &.bright {
-//     color: white;
-//   }
-// }
-
 .hero {
   background: $accent-color;
-  box-shadow: 0px 12px 40px rgba(246, 76, 107, 0.8);
+  box-shadow: 0px 12px 40px rgba(246, 76, 107, 0.24);
 
   p {
     color: white;
@@ -142,21 +107,30 @@ code {
     font-family: $serif-font;
   }
   .heading.primary {
-    font-size: 6rem;
+    font-size: $text-3xl;
     color: #ffffff;
   }
   .heading.secondary {
-    font-size: 6rem;
+    font-size: $text-3xl;
     color: $accent-color-light;
     padding-bottom: 24px;
   }
   @media screen and (max-width: $breakpoint-desktop) {
     .heading.primary {
-      font-size: 4rem;
+      font-size: $text-2xl;
     }
 
     .heading.secondary {
-      font-size: 4rem;
+      font-size: $text-2xl;
+    }
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    .heading.primary {
+      font-size: $text-xl;
+    }
+
+    .heading.secondary {
+      font-size: $text-xl;
     }
   }
 
@@ -183,7 +157,7 @@ code {
   font-size: 1rem;
   padding: 8px 32px;
   transition: background-color 150ms ease-in, color 150ms ease-in,
-    transform 150ms ease-in;
+    transform 150ms ease-in, box-shadow 150ms ease-in;
 
   &:hover {
     background-color: $accent-color !important;
@@ -201,6 +175,7 @@ code {
       background-color: $accent-color-dark !important;
       color: white !important;
       box-shadow: $shadow-lg;
+      transform: scale(1.05);
     }
 
     &.white {
@@ -211,6 +186,7 @@ code {
         background-color: white !important;
         border: 2px solid white !important;
         color: $accent-color-text-dark !important;
+        transform: scale(1.05);
       }
     }
   }
@@ -269,20 +245,54 @@ section {
   text-align: center;
   grid-template-columns: clamp($breakpoint-mobile, 100%, $breakpoint-desktop);
   grid-template-rows: min-content auto;
-
+  padding: 2rem;
   h1 {
-    @include heading-styles($text-xl);
+    @include heading-styles($text-2xl, $text-xl, $text-lg);
   }
   h2 {
-    @include heading-styles($text-lg);
+    @include heading-styles($text-xl, $text-lg, $text-md);
     color: $accent-color;
   }
   h3 {
-    font-family: $sans-serif-font;
-    font-family: $text-md;
+    @include heading-styles($text-md, $text-sm, $text-sm);
+    color: $accent-color-text-dark;
   }
   .flex {
     display: flex;
     flex-direction: column;
+  }
+}
+
+.card {
+  padding: $margin-2;
+  border-radius: $border-radius-md;
+  background-color: white;
+  box-shadow: $shadow-lg;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: $breakpoint-mobile) {
+    flex-direction: row;
+  }
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+  }
+}
+
+.gridx3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 2rem;
+  gap: $margin-2;
+  @media screen and (max-width: $breakpoint-mobile) {
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 }
